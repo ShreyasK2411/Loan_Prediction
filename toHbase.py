@@ -33,7 +33,7 @@ def put(row):
     del data[b'details:transaction_number']
 
     # Finally putting the data in the table
-    connection = happybase.Connection(host='localhost')
+    connection = happybase.Connection(host='localhost',timeout=6000)
     try:
         data_copy = data
         connection.table('transactions').put(row_key,data_copy)
@@ -43,18 +43,7 @@ def put(row):
 # Creating a spark session
 spark = pyspark.sql.SparkSession.builder.appName("Put data in Hbase").getOrCreate()
 try:
-    # Reading the data
-    # read all the files and combine them into a single dataframe
-    df = ""
-    path = input('Enter Path: ')
-    for file in os.listdir(path):
-        rdd1 = spark.read.parquet("file://" + path + "/" + file)
-
-        if df == "":
-            df = rdd1
-        else:
-            df = df.union(rdd1)
-
+    # create table if table not exists
     connection = happybase.Connection(host='localhost')
     if bytes('transactions',encoding='utf-8') not in connection.tables():
         # setting the name of the column family
@@ -62,8 +51,21 @@ try:
         connection.create_table('transactions',{column_family:dict()})
         connection.close()
         print("Table created successfully !!")
+    
+    # Reading the data
+    # read all the files one by one and put it into HBase
+    path = input('Enter Path: ')
+    files = os.listdir(path)
+    total = len(files)
+    cnt = 0
+    for file in files:
+        df = spark.read.parquet("file://" + path + "/" + file)
+        df.foreach(put)
+        print('{0} files remaining of {2} files'.format(cnt,total))
 
-    df.foreach(put)
+    
+
+    
 finally:
     # Closing the connection
     spark.stop()
