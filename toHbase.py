@@ -33,7 +33,7 @@ def put(row):
     del data[b'details:transaction_number']
 
     # Finally putting the data in the table
-    connection = happybase.Connection(host='localhost',timeout=6000)
+    connection = happybase.Connection(host='localhost',timeout=12000,transport='framed',protocol='compact')
     try:
         data_copy = data
         connection.table('transactions').put(row_key,data_copy)
@@ -49,8 +49,8 @@ try:
         # setting the name of the column family
         column_family = input('Enter column family name: ')
         connection.create_table('transactions',{column_family:dict()})
-        connection.close()
         print("Table created successfully !!")
+    connection.close()
     
     # Reading the data
     # read all the files one by one and put it into HBase
@@ -61,11 +61,7 @@ try:
     for file in files:
         df = spark.read.parquet("file://" + path + "/" + file)
         df.foreach(put)
-        print('{0} files remaining of {2} files'.format(cnt,total))
-
-    
-
-    
+        print('{0} files remaining of {1} files'.format(cnt,total))
 finally:
     # Closing the connection
     spark.stop()
