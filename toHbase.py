@@ -33,7 +33,7 @@ def put(row):
     del data[b'details:transaction_number']
 
     # Finally putting the data in the table
-    connection = happybase.Connection(host='localhost',timeout=12000,transport='framed',protocol='compact')
+    connection = happybase.Connection(host='localhost',transport='framed')
     try:
         data_copy = data
         connection.table('transactions').put(row_key,data_copy)
