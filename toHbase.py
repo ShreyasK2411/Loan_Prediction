@@ -33,12 +33,13 @@ def put(row):
     del data[b'details:transaction_number']
 
     # Finally putting the data in the table
-    connection = happybase.Connection(host='localhost',transport='framed')
-    try:
-        data_copy = data
-        connection.table('transactions').put(row_key,data_copy)
-    finally:
-        connection.close()
+#     connection = happybase.Connection(host='localhost',transport='framed')
+    global connection
+#     try:
+    data_copy = data
+    connection.table('transactions').put(row_key,data_copy)
+#     finally:
+#         connection.close()
 
 # Creating a spark session
 spark = pyspark.sql.SparkSession.builder.appName("Put data in Hbase").getOrCreate()
@@ -50,7 +51,6 @@ try:
         column_family = input('Enter column family name: ')
         connection.create_table('transactions',{column_family:dict()})
         print("Table created successfully !!")
-    connection.close()
     
     # Reading the data
     # read all the files one by one and put it into HBase
@@ -64,4 +64,5 @@ try:
         print('{0} files remaining of {1} files'.format(cnt,total))
 finally:
     # Closing the connection
+    connection.close()
     spark.stop()
