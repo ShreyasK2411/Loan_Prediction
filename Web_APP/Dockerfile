@@ -1,4 +1,4 @@
-FROM python:3.9-bullseye
+FROM ubuntu:20.04
 
 USER root
 
@@ -10,6 +10,7 @@ WORKDIR /app
 
 # install the dependencies and packages in the requirements file
 RUN apt-get update
+RUN apt-get install -y python3
 RUN apt-get install -y python3-dev
 RUN apt-get install -y gcc
 RUN pip install --upgrade pip
@@ -18,6 +19,6 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 # configure the container to run in an executed manner
-ENTRYPOINT [ "python" ]
+ENTRYPOINT [ "python3" ]
 
 CMD ["app.py" ]
