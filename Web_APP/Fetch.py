@@ -13,7 +13,7 @@ class Fetch:
                 .appName("toDataframe")\
                 .getOrCreate()
         # connection with HBase and HBase table
-        self.connection = happybase.Connection(host='localhost',protocol='compact')
+        self.connection = happybase.Connection(host='hbase-docker',port=9090)
         self.table = self.connection.table(table_name)
     
     def _process(self,row_key,region):
