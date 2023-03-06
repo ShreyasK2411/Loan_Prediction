@@ -2,12 +2,12 @@ import os
 import sys
 
 # configuring the environment
-os.environ["SPARK_HOME"] = "/home/talentum/spark/spark-3.3.2-bin-hadoop3"
-os.environ["PYLIB"] = os.environ["SPARK_HOME"] + "/python/lib"
-os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3.6" 
-os.environ["PYSPARK_DRIVER_PYTHON"] = "/usr/bin/python3"
-sys.path.insert(0, os.environ["PYLIB"] +"/py4j-0.10.7-src.zip")
-sys.path.insert(0, os.environ["PYLIB"] +"/pyspark.zip")
+# os.environ["SPARK_HOME"] = "/home/talentum/spark/spark-3.3.2-bin-hadoop3"
+# os.environ["PYLIB"] = os.environ["SPARK_HOME"] + "/python/lib"
+# os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3.6" 
+# os.environ["PYSPARK_DRIVER_PYTHON"] = "/usr/bin/python3"
+# sys.path.insert(0, os.environ["PYLIB"] +"/py4j-0.10.7-src.zip")
+# sys.path.insert(0, os.environ["PYLIB"] +"/pyspark.zip")
 import pyspark
 
 from flask import Flask, render_template, request
@@ -94,5 +94,5 @@ if __name__ == '__main__':
 
 	# run() method of Flask class runs the application
 	# on the local development server.
-	# app.run('127.0.0.0',port=8767)
-    app.run('0.0.0.0',port=8767)
+	app.run('127.0.0.0',port=8767)
+#     app.run('0.0.0.0',port=8767)
