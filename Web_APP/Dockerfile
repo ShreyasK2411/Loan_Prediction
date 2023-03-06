@@ -1,5 +1,10 @@
-# start by pulling the python image
-FROM python:3.8-alpine
+FROM datamechanics/spark:3.2.1-hadoop-3.3.1-java-11-scala-2.12-python-3.8-alpine
+
+USER root
+
+WORKDIR /opt/spark
+
+RUN pip install --upgrade pip
 
 # copy the requirements file into the image
 COPY ./requirements.txt /app/requirements.txt
