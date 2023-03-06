@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM python:3.8
 
 USER root
 
@@ -19,6 +19,6 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 # configure the container to run in an executed manner
-ENTRYPOINT [ "python3" ]
+ENTRYPOINT [ "python" ]
 
 CMD ["app.py" ]
