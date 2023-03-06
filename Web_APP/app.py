@@ -74,7 +74,7 @@ def predict():
         # adding the entered product_id to the dataframe
         df = df.withColumn('product',functions.lit(int(values[1])))
         # loading the model
-        model = PipelineModel.load('file:///home/talentum/test-jupyter/project-2/Web_APP/model')
+        model = PipelineModel.load('file:///app/model')
         # making the prediction
         pred = model.transform(df)
         result = pred.select('prediction')\
