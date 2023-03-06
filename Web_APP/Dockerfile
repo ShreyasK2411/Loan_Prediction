@@ -1,4 +1,6 @@
-FROM python:3.8-alpine
+FROM python:3.9-bullseye
+
+USER root
 
 # running the website
 COPY ./requirements.txt /app/requirements.txt
@@ -7,8 +9,11 @@ COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
 
 # install the dependencies and packages in the requirements file
+RUN apt-get update
+RUN apt-get install -y python3-dev
+RUN apt-get install -y gcc
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
 # copy every content from the local file to the image
 COPY . /app
 
