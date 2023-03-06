@@ -1,3 +1,0 @@
-pyspark==3.2.0
-pyyaml
-delta-spark
