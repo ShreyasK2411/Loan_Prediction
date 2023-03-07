@@ -2,7 +2,6 @@ FROM python:3.8
 
 USER root
 
-# running the website
 COPY ./requirements.txt /app/requirements.txt
 
 # configuring the environment
@@ -16,7 +15,6 @@ RUN tar xzf spark-3.3.2-bin-hadoop3.tgz
 RUN mv spark-3.3.2-bin-hadoop3 spark
 RUN echo export SPARK_HOME=/home/ec2-user/spark >> .bashrc
 RUN echo export PATH=$PATH:$SPARK_HOME/bin >> .bashrc
-RUN source ~/.bashrc
 
 # switch working directory
 WORKDIR /app
