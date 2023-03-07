@@ -51,6 +51,7 @@ try:
         column_family = input('Enter column family name: ')
         connection.create_table('transactions',{column_family:dict()})
         print("Table created successfully !!")
+    connection.close()
     
     # Reading the data
     # read all the files one by one and put it into HBase
@@ -64,5 +65,5 @@ try:
         print('{0} files remaining of {1} files'.format(cnt,total))
 finally:
     # Closing the connection
-    connection.close()
+    
     spark.stop()
