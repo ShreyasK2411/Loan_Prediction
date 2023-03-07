@@ -45,7 +45,7 @@ def put(row):
 spark = pyspark.sql.SparkSession.builder.appName("Put data in Hbase").getOrCreate()
 try:
     # create table if table not exists
-    connection = happybase.Connection(host='localhost')
+    connection = happybase.Connection(host='hbase-docker',port=9090)
     if bytes('transactions',encoding='utf-8') not in connection.tables():
         # setting the name of the column family
         column_family = input('Enter column family name: ')
