@@ -33,13 +33,13 @@ def put(row):
     del data[b'details:transaction_number']
 
     # Finally putting the data in the table
-#     connection = happybase.Connection(host='localhost',transport='framed')
-    global connection
-#     try:
-    data_copy = data
-    connection.table('transactions').put(row_key,data_copy)
-#     finally:
-#         connection.close()
+    connection = happybase.Connection(host='hbase-docker',port=9090)
+    
+    try:
+        data_copy = data
+        connection.table('transactions').put(row_key,data_copy)
+    finally:
+        connection.close()
 
 # Creating a spark session
 spark = pyspark.sql.SparkSession.builder.appName("Put data in Hbase").getOrCreate()
