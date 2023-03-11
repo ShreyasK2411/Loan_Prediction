@@ -4,7 +4,7 @@ sudo yum install -y git
 sudo systemctl start docker
 git clone https://github.com/ShreyasK2411/Loan_Prediction.git
 
-# copy the setup-hbase file to home directory
+# copy the setup file to home directory
 # and run the script in sudo mode
 
 # copy the last line of the file to the systems /etc/hosts
