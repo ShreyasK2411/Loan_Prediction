@@ -1,8 +1,18 @@
-# commands for setting up docker and git
+# Loan Prediction using Machine Learning,ETL(using pyspark) and Big Data Technologies
+*steps for running the project*
+# Step 1: Commands for setting up docker and git
+```bash
 sudo yum install -y docker
+```
+```bash
 sudo yum install -y git
+```
+```bash
 sudo systemctl start docker
+```
+```bash
 git clone https://github.com/ShreyasK2411/Loan_Prediction.git
+```
 
 # copy the setup file to home directory
 # and run the script in sudo mode
