@@ -1,4 +1,6 @@
 # Loan Prediction using Machine Learning,ETL(using pyspark) and Big Data Technologies
+## Snapshots of the deployment on EC2 instance
+
 *steps for running the project*
 ## Step 1: Commands for setting up docker and git
 ```bash
