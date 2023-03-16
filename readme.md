@@ -1,6 +1,6 @@
 # Loan Prediction using Machine Learning,ETL(using pyspark) and Big Data Technologies
 *steps for running the project*
-# Step 1: Commands for setting up docker and git
+## Step 1: Commands for setting up docker and git
 ```bash
 sudo yum install -y docker
 ```
@@ -14,7 +14,7 @@ sudo systemctl start docker
 git clone https://github.com/ShreyasK2411/Loan_Prediction.git
 ```
 
-# Step 2: Setting up HBase
+## Step 2: Setting up HBase
 *Note: copy the setup file to home directory and run the script in sudo mode and copy the last line of the file to the systems /etc/hosts.
 ```bash
 docker exec -it hbase-docker cat /etc/hosts
@@ -23,7 +23,7 @@ docker exec -it hbase-docker cat /etc/hosts
 echo hbase-docker <IP> >> /etc/hosts
 ```
 
-# Step 3: Download the data
+## Step 3: Download the data
 ```bash
 mkdir .kaggle
 ```
@@ -39,17 +39,25 @@ chmod 777 .kaggle/kaggle.json
 ```bash
 kaggle datasets download -d mrmorj/alfabattle-20
 ```
-
+```bash
 sudo unzip alfabattle-20.zip -d /run
+```
 
-# run the toHBase.py file
+## Step 4: Insert the data in HBase
+```bash
 sudo python3 toHBase.py
-column family name = details
-file path = /run/alfabattle2_train_transactions_contest/train_transactions_contest
+```
+- Enter the following after prompt
+  - column family name = details
+  - file path = /run/alfabattle2_train_transactions_contest/train_transactions_contest
 
-
-# commands for building and running docker image
+## Step 5: Build the Website Docker image
+```bash
 sudo docker build . -t webserver
+```
+```bash
 sudo docker exec -it webserver echo <IP> >> /etc/hosts
+```
+```bash
 docker run -p 8767:8767 --name website -d webserver
-
+```
