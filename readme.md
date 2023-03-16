@@ -1,6 +1,6 @@
 # Loan Prediction using Machine Learning,ETL(using pyspark) and Big Data Technologies
 ## Snapshots of the deployment on EC2 instance
-
+![alt insert](https://github.com/ShreyasK2411/Loan_Prediction/blob/fe422b0b1aad9ea190658fa73c46951c50dee0a1/images/snapshot1.png?raw=true)
 *steps for running the project*
 ## Step 1: Commands for setting up docker and git
 ```bash
