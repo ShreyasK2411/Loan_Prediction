@@ -14,22 +14,31 @@ sudo systemctl start docker
 git clone https://github.com/ShreyasK2411/Loan_Prediction.git
 ```
 
-# copy the setup file to home directory
-# and run the script in sudo mode
-
-# copy the last line of the file to the systems /etc/hosts
+# Step 2: Setting up HBase
+*Note: copy the setup file to home directory and run the script in sudo mode and copy the last line of the file to the systems /etc/hosts.
+```bash
 docker exec -it hbase-docker cat /etc/hosts
+```
+```bash
 echo hbase-docker <IP> >> /etc/hosts
+```
 
-
-# downloading the data
+# Step 3: Download the data
+```bash
 mkdir .kaggle
+```
+```bash
 mv /home/ec2-user/Loan_Prediction/kaggle.json .kaggle
+```
+```bash
 chmod 777 .kaggle/kaggle.json
-# go to /dev/ and download the dataset
-# change the permissions of the folder
-# exit the sudo mode and then download the data
+```
+- go to /dev/ and download the dataset
+- change the permissions of the folder
+- exit the sudo mode and then download the data
+```bash
 kaggle datasets download -d mrmorj/alfabattle-20
+```
 
 sudo unzip alfabattle-20.zip -d /run
 
